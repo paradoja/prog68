@@ -13,6 +13,13 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
+    cssDependencies <- makePatternDependency "css/**.hs"
+    rulesExtraDependencies [cssDependencies] $ do
+      match "css/screen.hs" $ do
+        route $ setExtension "css"
+        compile $ getResourceString >>=
+           withItemBody (unixFilter "cabal" ["exec", "runghc"])
+
     match "js/*.js" $ do
         route   idRoute
         compile compressJsCompiler
