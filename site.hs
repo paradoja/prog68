@@ -40,7 +40,7 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= wordCount "templates/post.html"               postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -61,3 +61,10 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%Y-%m-%d" `mappend`
     defaultContext
+
+wordCount :: Identifier -> Context String -> Item String -> Compiler (Item String)
+wordCount template ctx item = let body = itemBody item
+                                  count = length $ words body
+                                  countCtx = constField "wordCount" (show count) `mappend`
+                                             ctx
+                              in loadAndApplyTemplate template countCtx item
