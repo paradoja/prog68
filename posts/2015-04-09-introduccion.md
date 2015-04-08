@@ -181,7 +181,7 @@ Hasta que se haga eso, `io` tiene un instalador en su página, y para
 `git`, se puede ir tirando con el
 [cliente de Windows de Github](https://windows.github.com/). Este
 cliente es visual, pero siempre se usaría (o al menos hasta que se
-sepa lo que hace con el `Git shell` (que es un terminal).
+sepa lo que hace con él) `Git shell`, que es un terminal.
 
 
 [^1]: ¿Forma de pensar? ¿Mentalidad? ¿No es lo mismo? Aquí los uso con
